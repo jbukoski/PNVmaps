@@ -49,7 +49,7 @@ source("../R_code/PNV_mapping_functions.R")
 
 ## Mapping the global distribution of biomes
 
-In the first example we look at the global distribution of biomes i.e. most general vegetation / ecosystem types. For modeling we use the [BIOME 6000 point data set](http://dx.doi.org/10.17864/1947.99) [@Harrison2012403], which includes vegetation reconstructions from modern pollen samples, preserved in lake and bog sediments and from moss polsters, soil and other surface deposits. The BIOME 6000 we have previously overlaid against some 160 layers (see [paper](https://doi.org/10.7287/peerj.preprints.26811v2) for full description of environmental layers), so that we on the end get a regression-matrix with 8628 rows and 162 columns:
+In the first example we look at the global distribution of biomes i.e. most general vegetation / ecosystem types. For modeling we use the [BIOME 6000 point data set](http://dx.doi.org/10.17864/1947.99) [@Harrison2012403], which includes vegetation reconstructions from modern pollen samples, preserved in lake and bog sediments and from moss polsters, soil and other surface deposits. The BIOME 6000 we have previously overlaid against some 160 layers (see [paper](https://doi.org/10.7287/peerj.preprints.26811v2) for full description of environmental layers), so that we end up with a regression-matrix with 8628 rows and 162 columns:
 
 ```{r}
 rm.biome.s <- read.csv(gzfile("../Data/Biomes/Biome00k_regression_matrix.csv.gz"))
@@ -83,7 +83,7 @@ thus, the average classification accuracy of this model is about 70%. Could this
 ```{r, eval=FALSE, echo=FALSE}
 library(caret)
 library(doParallel)
-cl <- makeCluster(6)
+cl <- makeCluster(4)
 registerDoParallel(cl)
 tc <- trainControl(method="repeatedcv", number=5, repeats=2, classProbs=TRUE, 
                    allowParallel=TRUE, verboseIter=TRUE)
